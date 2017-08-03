@@ -16,7 +16,8 @@ Console script for resizing images.
 - --output Where to save result.
 
 If only `--width` or `--height` provided than resulting image will be resized with aspect ratio of original.
-If output path doesn't specified than resulting image will be saved near original with adding `__WidthxHeight` to original name.
+
+If `--output` doesn't specified than resulting image will be saved near original with adding `__WidthxHeight` to original name.
 
 # Examples of use
 
