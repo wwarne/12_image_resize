@@ -7,14 +7,14 @@ from PIL import Image
 def create_parser():
     arguments_parser = argparse.ArgumentParser(description='Image resize utility')
     arguments_parser.add_argument('path')
-    arguments_parser.add_argument('--width', nargs='?', type=image_size_type, help='Width of a resulting image.')
-    arguments_parser.add_argument('--height', nargs='?', type=image_size_type, help='Height of a resulting image.')
+    arguments_parser.add_argument('--width', nargs='?', type=verify_image_size, help='Width of a resulting image.')
+    arguments_parser.add_argument('--height', nargs='?', type=verify_image_size, help='Height of a resulting image.')
     arguments_parser.add_argument('--scale', nargs='?', type=float, help='Scale image with this coefficient.')
     arguments_parser.add_argument('--output', nargs='?', help='Where to save result.')
     return arguments_parser
 
 
-def image_size_type(x):
+def verify_image_size(x):
     x = int(x)
     if x <= 0:
         raise argparse.ArgumentTypeError('The size can\'t be an 0 or a negative number')
