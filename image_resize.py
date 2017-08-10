@@ -77,4 +77,6 @@ if __name__ == '__main__':
     source_image = load_image(parameters.path) or sys.exit('Can\'t load a file {}'.format(parameters.path))
     result_image = process_image(source_image, width=parameters.width, height=parameters.height, scale=parameters.scale)
 
-    save_image(result_image, parameters) or sys.exit('Can\'t save resulting file to {}'.format(parameters.output))
+    save_image(image=result_image,
+               source_path=parameters.path,
+               output_path=parameters.output) or sys.exit('Can\'t save resulting file to {}'.format(parameters.output))
