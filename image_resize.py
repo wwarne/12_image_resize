@@ -21,9 +21,9 @@ def verify_image_size(x):
     return x
 
 
-def process_image(image, width=None, height=None, scale=None):
-    if width or height:
-        return resize_image(image, width, height)
+def process_image(image, result_width=None, result_height=None, scale=None):
+    if result_width or result_height:
+        return resize_image(image, result_width, result_height)
     if scale:
         return scale_image(image, scale)
     return image
