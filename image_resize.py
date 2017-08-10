@@ -1,7 +1,10 @@
 import argparse
 import os
 import sys
+import logging
 from PIL import Image
+
+logging.basicConfig(level=logging.INFO)
 
 
 def create_parser():
@@ -38,7 +41,7 @@ def resize_image(image, result_width, result_height):
     source_width, source_height = image.size
     if result_width and result_height:
         if round(source_width/source_height, 2) != round(result_width/result_height, 2):
-            print('WARNING! Aspect ratio of the resulting image is different from the source one.')
+            logging.info('WARNING! Aspect ratio of the resulting image is different from the source one.')
     elif result_width:
         result_height = round((result_width/source_width) * source_height)
     elif result_height:
@@ -75,7 +78,10 @@ if __name__ == '__main__':
         parser.error('Parameter --scale can\'t be used together with --width or --height.')
 
     source_image = load_image(parameters.path) or sys.exit('Can\'t load a file {}'.format(parameters.path))
-    result_image = process_image(source_image, width=parameters.width, height=parameters.height, scale=parameters.scale)
+    result_image = process_image(source_image,
+                                 result_width=parameters.width,
+                                 result_height=parameters.height,
+                                 scale=parameters.scale)
 
     save_image(image=result_image,
                source_path=parameters.path,
