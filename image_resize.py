@@ -78,7 +78,7 @@ if __name__ == '__main__':
         parser.error('Parameter --scale can\'t be used together with --width or --height.')
 
     source_image = load_image(parameters.path) or sys.exit('Can\'t load a file {}'.format(parameters.path))
-    result_image = process_image(source_image,
+    result_image = process_image(image=source_image,
                                  result_width=parameters.width,
                                  result_height=parameters.height,
                                  scale=parameters.scale)
