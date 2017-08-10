@@ -35,7 +35,7 @@ Assume `pic.jpg` is a 200x100 px. jpeg file.
 * Transform picture into a new image with the size of 100x100 px.
 ```
 python image_resize.py pic.jpg --width 100 --height 100
-WARNING! Aspect ratio of the resulting image is different from the source one.
+ATTENTION! Aspect ratio of the resulting image is different from the source one.
 ```
 (Resulting picture will be saved as pic__100x100.jpg)
 
