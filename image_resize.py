@@ -41,7 +41,7 @@ def resize_image(image, result_width, result_height):
     source_width, source_height = image.size
     if result_width and result_height:
         if round(source_width/source_height, 2) != round(result_width/result_height, 2):
-            logging.info('WARNING! Aspect ratio of the resulting image is different from the source one.')
+            logging.info('ATTENTION! Aspect ratio of the resulting image is different from the source one.')
     elif result_width:
         result_height = round((result_width/source_width) * source_height)
     elif result_height:
