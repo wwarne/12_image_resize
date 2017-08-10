@@ -21,11 +21,11 @@ def verify_image_size(x):
     return x
 
 
-def process_image(image, params):
-    if params.width or params.height:
-        return resize_image(image, params.width, params.height)
-    if params.scale:
-        return scale_image(image, params.scale)
+def process_image(image, width=None, height=None, scale=None):
+    if width or height:
+        return resize_image(image, width, height)
+    if scale:
+        return scale_image(image, scale)
     return image
 
 
@@ -55,9 +55,9 @@ def load_image(path):
         return None
 
 
-def save_image(image, params):
-    base, tail = os.path.split(params.path)
-    if not params.output:
+def save_image(image, source_path, output_path=None):
+    base, tail = os.path.split(source_path)
+    if not output_path:
         file_name, file_extension = os.path.splitext(tail)
         tail = '{name}__{i[0]}x{i[1]}{ext}'.format(name=file_name, i=image.size, ext=file_extension)
     save_to = os.path.join(base, tail)
@@ -75,5 +75,6 @@ if __name__ == '__main__':
         parser.error('Parameter --scale can\'t be used together with --width or --height.')
 
     source_image = load_image(parameters.path) or sys.exit('Can\'t load a file {}'.format(parameters.path))
-    result_image = process_image(source_image, parameters)
+    result_image = process_image(source_image, width=parameters.width, height=parameters.height, scale=parameters.scale)
+
     save_image(result_image, parameters) or sys.exit('Can\'t save resulting file to {}'.format(parameters.output))
